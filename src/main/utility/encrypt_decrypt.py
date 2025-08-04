@@ -1,6 +1,10 @@
 import base64
-from Cryptodome.Cipher import AES
-from Cryptodome.Protocol.KDF import PBKDF2
+# from Cryptodome.Cipher import AES
+from Crypto.Cipher import AES
+
+# from Cryptodome.Protocol.KDF import PBKDF2
+from Crypto.Protocol.KDF import PBKDF2
+
 import os, sys
 from resources.dev import config
 # from logging_config import logger
@@ -37,3 +41,5 @@ def encrypt(raw):
 def decrypt(enc):
     cipher = AES.new(get_private_key(), AES.MODE_CBC, iv.encode('utf-8'))
     return unpad(cipher.decrypt(base64.b64decode(enc))).decode('utf8')
+
+
